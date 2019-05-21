@@ -1,10 +1,10 @@
 package pl.sii;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import org.apache.log4j.Logger;
 
 import static java.util.stream.Collectors.toMap;
 
@@ -12,6 +12,8 @@ public class PopularWords {
 
     private final String FILE_PATH = (getClass().getResource("/3esl.txt")).getPath();
     private static final String REGEX = "([,.\\s]+)";
+
+    final static Logger logger = Logger.getLogger(PopularWords.class);
 
     public static void main(String[] args) throws IOException
     {
@@ -24,21 +26,22 @@ public class PopularWords {
     private List<String> extractWordsFrom(String filePath) throws IOException
     {
         List<String> words = new ArrayList<>(Collections.emptyList());
-        FileReader file = new FileReader(filePath);
-        BufferedReader br = new BufferedReader(file);
 
-        String line = br.readLine();
+        try {
+            FileReader file = new FileReader(FILE_PATH);
+            BufferedReader br = new BufferedReader(file);
+            String line = br.readLine();
 
-        while(line != null)
-        {
-            words.addAll(Arrays.asList(line.split(REGEX)));
-            line = br.readLine();
+            while (line != null) {
+                words.addAll(Arrays.asList(line.split(REGEX)));
+                line = br.readLine();
+            }
+            file.close();
+        } catch (FileNotFoundException ex) {
+            logger.error("The file has not been found");
         }
-
-        file.close();
         return words;
     }
-
 
 
     Map<String, Long> findOneThousandMostPopularWords() throws IOException

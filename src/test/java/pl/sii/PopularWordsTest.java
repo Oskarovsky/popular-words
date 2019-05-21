@@ -59,7 +59,7 @@ public class PopularWordsTest {
         return BigDecimal.valueOf(obtained * 100 / total).setScale(4, RoundingMode.HALF_UP);
     }
 
-    private Map<String, Long> getWordsFrequencyListCreatedByAdamKilgarriff() throws IOException {
+    private Map<String, Long> getWordsFrequencyListCreatedByAdamKilgarriff() {
         Map<String, Long> wordsFrequency = new HashMap<>();
 
         try (Scanner scanner = new Scanner(new File(FILE_PATH))) {
