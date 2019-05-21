@@ -1,13 +1,11 @@
 package pl.sii;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -18,9 +16,9 @@ import static org.junit.Assert.assertFalse;
 
 public class PopularWordsTest {
     private static final PopularWords testee = new PopularWords();
-    private final String FILE_PATH = (getClass().getResource("/all.num")).getPath();
     private static final String REGEX = " ";
 
+    private final String FILE_PATH = (getClass().getResource("/all.num")).getPath();
 
     @Test
     public void shouldReturnOneThousandMostPopularWords() throws IOException {
