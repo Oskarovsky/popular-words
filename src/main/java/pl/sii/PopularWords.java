@@ -1,6 +1,8 @@
 package pl.sii;
 
 import java.io.*;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -8,12 +10,13 @@ import org.apache.log4j.Logger;
 
 import static java.util.stream.Collectors.toMap;
 
+
 public class PopularWords {
 
+    final static Logger logger = Logger.getLogger(PopularWords.class);
     private final String FILE_PATH = (getClass().getResource("/3esl.txt")).getPath();
     private static final String REGEX = "([,.\\s]+)";
 
-    final static Logger logger = Logger.getLogger(PopularWords.class);
 
     public static void main(String[] args) throws IOException
     {
@@ -27,25 +30,19 @@ public class PopularWords {
     {
         List<String> words = new ArrayList<>(Collections.emptyList());
 
-        try {
-            FileReader file = new FileReader(FILE_PATH);
-            BufferedReader br = new BufferedReader(file);
-            String line = br.readLine();
-
+        try (BufferedReader fileContent = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line = fileContent.readLine();
             while (line != null) {
                 words.addAll(Arrays.asList(line.split(REGEX)));
-                line = br.readLine();
+                line = fileContent.readLine();
             }
-            file.close();
         } catch (FileNotFoundException ex) {
             logger.error("The file has not been found");
         }
         return words;
     }
 
-
-    Map<String, Long> findOneThousandMostPopularWords() throws IOException
-    {
+    Map<String, Long> findOneThousandMostPopularWords() throws IOException {
         return extractWordsFrom(FILE_PATH)
                 .stream()
                 .collect(Collectors.toConcurrentMap(word -> word, word -> 1L, Long::sum))
@@ -59,3 +56,5 @@ public class PopularWords {
                         LinkedHashMap::new));
     }
 }
+
+

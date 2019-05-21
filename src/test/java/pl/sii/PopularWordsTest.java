@@ -3,6 +3,7 @@ package pl.sii;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 import static java.lang.Long.parseLong;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static pl.sii.PopularWords.logger;
 
 public class PopularWordsTest {
     private static final PopularWords testee = new PopularWords();
@@ -62,20 +64,21 @@ public class PopularWordsTest {
     private Map<String, Long> getWordsFrequencyListCreatedByAdamKilgarriff() {
         Map<String, Long> wordsFrequency = new HashMap<>();
 
-        try (Scanner scanner = new Scanner(new File(FILE_PATH))) {
-            scanner.nextLine();
-            while (scanner.hasNextLine()) {
-                String[] parts = scanner.nextLine().split(REGEX);
+        try (Scanner fileContent = new Scanner(new File(FILE_PATH))) {
+            fileContent.nextLine();
+            while (fileContent.hasNextLine()) {
+                String[] parts = fileContent.nextLine().split(REGEX);
                 if (wordsFrequency.get(parts[1]) != null) {
                     wordsFrequency.put(parts[1], wordsFrequency.get(parts[1]) + parseLong(parts[0]));
                 } else {
                     wordsFrequency.put(parts[1], parseLong(parts[0]));
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            logger.error("The file has not been found");
         }
 
         return wordsFrequency;
     }
+
 }
