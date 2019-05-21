@@ -1,9 +1,9 @@
 # popular-words
 
 ## Final product
-This program count all words from `3esl.txt` file and display 1k most popular words. 
+This program counts all words from `3esl.txt` file and displays 1k most popular words. 
 
-What's more I have some additional questions to our client. These questions you can find in Issues bar with `question` mark
+What's more, I have some additional questions to our client. These questions you can find in Issues bar with `question` mark
 
 ## The content of the task
 ### Description
