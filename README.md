@@ -1,9 +1,16 @@
 # popular-words
-## Description
+
+## Final product
+This program count all words from `3esl.txt` file and display 1k most popular words. 
+
+What's more I have some additional questions to our client. These questions you can find in Issues bar with `question` mark
+
+## The content of the task
+### Description
 This repository was created for recruitment purposes and contains practical task to do.
 Task is an authentic request of an Englishman. It is also a good case to check many technical and analytical skills. 
 
-## Task
+### Task
 I need a simple program, that will find the first 1000 most popular words in a file **3esl.txt** (this file is saved in a resource directory and was downloaded from a page http://wordlist.aspell.net/12dicts from 12dicts-5.0.zip archive file)
 
 Please compare your results with an index frequency file created by Adam Kilgarriff in a file **all.num** (this file is saved in test resource directory and was downloaded from a page 
@@ -17,7 +24,7 @@ To create a result for this task please:
 
 Please be accurate and attentive and include all corner cases. Good luck!
 
-## Technical info
+### Technical info
 Project requires:
 - Java SE 12
 - Maven at least v3.5.0
