@@ -15,6 +15,7 @@ import static java.util.stream.Collectors.toMap;
 public class PopularWords {
 
     final static Logger logger = Logger.getLogger(PopularWords.class);
+
     private final String FILE_PATH = (getClass().getResource("/3esl.txt")).getPath();
     private static final String REGEX = "([,.\\s]+)";
 
