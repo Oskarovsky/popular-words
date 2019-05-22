@@ -1,12 +1,13 @@
 package pl.sii;
 
-import java.io.*;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
+import org.apache.log4j.Logger;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import org.apache.log4j.Logger;
 
 import static java.util.stream.Collectors.toMap;
 
